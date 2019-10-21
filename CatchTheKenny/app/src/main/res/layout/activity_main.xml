@@ -12,17 +12,18 @@
         android:layout_height="403dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="33dp"
-        app:layout_constraintBottom_toTopOf="@+id/textView2"
+        app:layout_constraintBottom_toTopOf="@+id/scoreText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.792"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/timeText"
         app:layout_constraintVertical_bias="0.993">
 
         <ImageView
             android:id="@+id/imageView1"
             android:layout_width="100dp"
             android:layout_height="120dp"
+            android:onClick="increaseScore"
             app:layout_column="0"
             app:layout_row="0"
             app:srcCompat="@drawable/kenny" />
@@ -31,6 +32,7 @@
             android:id="@+id/imageView2"
             android:layout_width="100dp"
             android:layout_height="120dp"
+            android:onClick="increaseScore"
             app:layout_column="1"
             app:layout_row="0"
             app:srcCompat="@drawable/kenny" />
@@ -39,6 +41,7 @@
             android:id="@+id/imageView3"
             android:layout_width="100dp"
             android:layout_height="120dp"
+            android:onClick="increaseScore"
             app:layout_column="2"
             app:layout_row="0"
             app:srcCompat="@drawable/kenny" />
@@ -47,6 +50,7 @@
             android:id="@+id/imageView4"
             android:layout_width="100dp"
             android:layout_height="120dp"
+            android:onClick="increaseScore"
             app:layout_column="0"
             app:layout_row="1"
             app:srcCompat="@drawable/kenny" />
@@ -55,6 +59,7 @@
             android:id="@+id/imageView5"
             android:layout_width="100dp"
             android:layout_height="120dp"
+            android:onClick="increaseScore"
             app:layout_column="1"
             app:layout_row="1"
             app:srcCompat="@drawable/kenny" />
@@ -63,6 +68,7 @@
             android:id="@+id/imageView6"
             android:layout_width="100dp"
             android:layout_height="120dp"
+            android:onClick="increaseScore"
             app:layout_column="2"
             app:layout_row="1"
             app:srcCompat="@drawable/kenny" />
@@ -71,6 +77,7 @@
             android:id="@+id/imageView7"
             android:layout_width="100dp"
             android:layout_height="120dp"
+            android:onClick="increaseScore"
             app:layout_column="0"
             app:layout_row="2"
             app:srcCompat="@drawable/kenny" />
@@ -79,6 +86,7 @@
             android:id="@+id/imageView8"
             android:layout_width="100dp"
             android:layout_height="120dp"
+            android:onClick="increaseScore"
             app:layout_column="1"
             app:layout_row="2"
             app:srcCompat="@drawable/kenny" />
@@ -87,6 +95,7 @@
             android:id="@+id/imageView9"
             android:layout_width="100dp"
             android:layout_height="120dp"
+            android:onClick="increaseScore"
             app:layout_column="2"
             app:layout_row="2"
             app:srcCompat="@drawable/kenny" />
@@ -94,7 +103,7 @@
     </android.support.v7.widget.GridLayout>
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/timeText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
@@ -105,7 +114,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/scoreText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="36dp"
