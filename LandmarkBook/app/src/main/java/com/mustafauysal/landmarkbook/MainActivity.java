@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
 
         ListView listView = (ListView) findViewById(R.id.listView);
 
-        ArrayList<String> landmarkNames = new ArrayList<String>();
+        final ArrayList<String> landmarkNames = new ArrayList<String>();
 
         landmarkNames.add("Pisa");
         landmarkNames.add("Colosseum");
@@ -49,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 Intent intent = new Intent(getApplicationContext(),DetailActivity.class);
+                intent.putExtra("name", landmarkNames.get(position));
                 startActivity(intent);
 
             }
