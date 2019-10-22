@@ -1,6 +1,7 @@
 package com.mustafauysal.landmarkbook;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -25,6 +26,11 @@ public class DetailActivity extends AppCompatActivity {
 
         textView.setText(name);
 
-        imageView.setImageBitmap(MainActivity.selectedImage);
+        //imageView.setImageBitmap(MainActivity.selectedImage);
+
+        Globals globals = Globals.getInstance();
+        Bitmap bitmap = globals.getData();
+
+        imageView.setImageBitmap(bitmap);
     }
 }

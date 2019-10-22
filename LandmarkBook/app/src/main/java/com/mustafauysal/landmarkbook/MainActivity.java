@@ -53,7 +53,12 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(),DetailActivity.class);
                 intent.putExtra("name", landmarkNames.get(position));
 
-                selectedImage = landmarkImages.get(position);
+                //selectedImage = landmarkImages.get(position);
+
+                Bitmap bitmap = landmarkImages.get(position);
+
+                Globals globals = Globals.getInstance();
+                globals.setData(bitmap);
 
                 startActivity(intent);
 
