@@ -19,8 +19,11 @@ public class MainActivity extends AppCompatActivity {
         ArrayList<String> landmarkNames = new ArrayList<String>();
 
         landmarkNames.add("Pisa");
-        landmarkNames.add("Colloseo");
+        landmarkNames.add("Colosseum");
         landmarkNames.add("Eiffel");
+        landmarkNames.add("London Bridge");
+
+
 
         ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, landmarkNames);
 
