@@ -1,5 +1,7 @@
 package com.mustafauysal.landmarkbook;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
@@ -23,7 +25,17 @@ public class MainActivity extends AppCompatActivity {
         landmarkNames.add("Eiffel");
         landmarkNames.add("London Bridge");
 
+        Bitmap pisa = BitmapFactory.decodeResource(getApplicationContext().getResources(),R.drawable.pisa);
+        Bitmap colosseum = BitmapFactory.decodeResource(getApplicationContext().getResources(),R.drawable.colosseum);
+        Bitmap eiffel = BitmapFactory.decodeResource(getApplicationContext().getResources(),R.drawable.eiffel);
+        Bitmap londonBridge = BitmapFactory.decodeResource(getApplicationContext().getResources(),R.drawable.bridge);
 
+        ArrayList<Bitmap> landmarkImages = new ArrayList<>();
+
+        landmarkImages.add(pisa);
+        landmarkImages.add(colosseum);
+        landmarkImages.add(eiffel);
+        landmarkImages.add(londonBridge);
 
         ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, landmarkNames);
 
