@@ -24,5 +24,7 @@ public class DetailActivity extends AppCompatActivity {
         String name = intent.getStringExtra("name");
 
         textView.setText(name);
+
+        imageView.setImageBitmap(MainActivity.selectedImage);
     }
 }

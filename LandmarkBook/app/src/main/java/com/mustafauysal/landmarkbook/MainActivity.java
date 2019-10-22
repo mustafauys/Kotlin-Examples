@@ -14,6 +14,8 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
+    static Bitmap selectedImage;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         Bitmap eiffel = BitmapFactory.decodeResource(getApplicationContext().getResources(),R.drawable.eiffel);
         Bitmap londonBridge = BitmapFactory.decodeResource(getApplicationContext().getResources(),R.drawable.bridge);
 
-        ArrayList<Bitmap> landmarkImages = new ArrayList<>();
+        final ArrayList<Bitmap> landmarkImages = new ArrayList<>();
 
         landmarkImages.add(pisa);
         landmarkImages.add(colosseum);
@@ -50,6 +52,9 @@ public class MainActivity extends AppCompatActivity {
 
                 Intent intent = new Intent(getApplicationContext(),DetailActivity.class);
                 intent.putExtra("name", landmarkNames.get(position));
+
+                selectedImage = landmarkImages.get(position);
+
                 startActivity(intent);
 
             }
