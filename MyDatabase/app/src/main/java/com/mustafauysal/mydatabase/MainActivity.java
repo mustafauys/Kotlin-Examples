@@ -21,7 +21,11 @@ public class MainActivity extends AppCompatActivity {
 
             //myDatabase.execSQL("INSERT INTO musicians (name, age) VALUES ('Lars', 55)");
 
-            Cursor cursor = myDatabase.rawQuery("SELECT * FROM musicians", null);
+            //myDatabase.execSQL("INSERT INTO musicians (name, age) VALUES ('Kirk', 60)");
+
+            //myDatabase.execSQL("INSERT INTO musicians (name, age) VALUES ('Rob', 65)");
+
+            Cursor cursor = myDatabase.rawQuery("SELECT * FROM musicians WHERE age < 59 AND name = 'Lars'", null);
 
             int nameIx = cursor.getColumnIndex("name");
             int ageIx = cursor.getColumnIndex("age");
