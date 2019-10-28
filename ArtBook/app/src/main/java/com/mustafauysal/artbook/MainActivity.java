@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.ListView;
 
 import java.util.List;
@@ -27,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
         if (item.getItemId() == R.id.add_art) {
 
             Intent intent = new Intent(getApplicationContext(), Main2Activity.class);
+            intent.putExtra("info", "new");
             startActivity(intent);
 
         }
@@ -40,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         ListView listView = (ListView) findViewById(R.id.listView);
+
+
 
 
     }
