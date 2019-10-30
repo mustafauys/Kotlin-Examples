@@ -3,6 +3,8 @@ package com.mustafauysal.artbook;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteStatement;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -16,12 +18,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
 public class Main2Activity extends AppCompatActivity {
 
     ImageView imageView;
     EditText editText;
+    static SQLiteDatabase database;
+    Bitmap selectedImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,8 +86,8 @@ public class Main2Activity extends AppCompatActivity {
             Uri image = data.getData();
 
             try {
-                Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), image);
-                imageView.setImageBitmap(bitmap);
+                selectedImage = MediaStore.Images.Media.getBitmap(this.getContentResolver(), image);
+                imageView.setImageBitmap(selectedImage);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -93,6 +98,31 @@ public class Main2Activity extends AppCompatActivity {
     }
 
     public void save (View view) {
+
+        String artName  = editText.getText().toString();
+
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        selectedImage.compress(Bitmap.CompressFormat.PNG,50,outputStream);
+        byte[] byteArray = outputStream.toByteArray();
+
+        try {
+
+            database = this.openOrCreateDatabase("Arts", MODE_PRIVATE, null);
+            database.execSQL("CREATE TABLE IF NOT EXISTS arts (name VARCHAR, image BLOB)");
+
+            String sqlString = "INSERT INTO arts (name, image) VALUES (?, ?)";
+            SQLiteStatement statement = database.compileStatement(sqlString);
+            statement.bindString(1, artName);
+            statement.bindBlob(2, byteArray);
+            statement.execute();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        startActivity(intent);
+
 
     }
 }
