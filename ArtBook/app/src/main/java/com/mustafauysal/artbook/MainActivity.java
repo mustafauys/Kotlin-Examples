@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -18,6 +20,8 @@ import java.util.BitSet;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+
+    static ArrayList<Bitmap> artImage;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -49,8 +53,8 @@ public class MainActivity extends AppCompatActivity {
 
         ListView listView = (ListView) findViewById(R.id.listView);
 
-        ArrayList<String> artName = new ArrayList<String>();
-        ArrayList<Bitmap> artImage = new ArrayList<Bitmap>();
+        final ArrayList<String> artName = new ArrayList<String>();
+        artImage = new ArrayList<Bitmap>();
 
         ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1,artName);
         listView.setAdapter(arrayAdapter);
@@ -85,6 +89,20 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                Intent intent = new Intent(getApplicationContext(), Main2Activity.class);
+                intent.putExtra("info", "old");
+                intent.putExtra("name", artName.get(position));
+                intent.putExtra("position", position);
+
+                startActivity(intent);
+
+
+            }
+        });
 
     }
 }
