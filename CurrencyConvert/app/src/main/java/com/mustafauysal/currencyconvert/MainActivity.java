@@ -20,6 +20,17 @@ public class MainActivity extends AppCompatActivity {
 
     public void getRates (View view) {
 
+        DownloadData downloadData = new DownloadData();
+
+        try {
+            String url = "http://data.fixer.io/api/latest?access_key=110fbb974ff5eef0e81c9d415c9c8fa5";
+
+            downloadData.execute(url);
+
+        } catch (Exception e) {
+
+        }
+
     }
 
     private class DownloadData extends AsyncTask<String, Void, String> {
@@ -38,7 +49,19 @@ public class MainActivity extends AppCompatActivity {
                 InputStream inputStream = httpURLConnection.getInputStream();
                 InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
 
+                int data = inputStreamReader.read();
+
+                while (data > 0) {
+
+                    char  character = (char) data;
+                    result += character;
+
+                    data = inputStreamReader.read();
+
+                }
+
                 return result;
+
 
             } catch (Exception e) {
                 return null;
@@ -49,8 +72,10 @@ public class MainActivity extends AppCompatActivity {
         }
 
         @Override
-        protected void onPostExecute(String s) {
+        protected void onPostExecute(String s)
+        {
             super.onPostExecute(s);
+            System.out.println("Alınan Data: " + s);
         }
     }
 
