@@ -5,6 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
+import org.json.JSONObject;
+
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
@@ -75,7 +77,24 @@ public class MainActivity extends AppCompatActivity {
         protected void onPostExecute(String s)
         {
             super.onPostExecute(s);
-            System.out.println("Alınan Data: " + s);
+            //System.out.println("Alınan Data: " + s);
+
+            try {
+
+                JSONObject jsonObject = new JSONObject(s);
+                String base = jsonObject.getString("base");
+                System.out.println("base: " + base);
+
+                String rates = jsonObject.getString("rates");
+                System.out.println("rates: " + rates);
+
+                JSONObject jsonObject1 = new JSONObject(rates);
+                String turkishlira = jsonObject1.getString("TRY");
+                System.out.println("try: " + turkishlira);
+
+            } catch (Exception e) {
+
+            }
         }
     }
 
