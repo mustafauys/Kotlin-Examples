@@ -4,6 +4,7 @@ import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 import org.json.JSONObject;
 
@@ -14,10 +15,22 @@ import java.net.URL;
 
 public class MainActivity extends AppCompatActivity {
 
+    TextView tryText;
+    TextView cadText;
+    TextView usdText;
+    TextView jpyText;
+    TextView chfText;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        tryText = findViewById(R.id.tryText);
+        cadText = findViewById(R.id.cadText);
+        usdText = findViewById(R.id.usdText);
+        jpyText = findViewById(R.id.jpyText);
+        chfText = findViewById(R.id.chfText);
     }
 
     public void getRates (View view) {
@@ -83,14 +96,26 @@ public class MainActivity extends AppCompatActivity {
 
                 JSONObject jsonObject = new JSONObject(s);
                 String base = jsonObject.getString("base");
-                System.out.println("base: " + base);
+
 
                 String rates = jsonObject.getString("rates");
-                System.out.println("rates: " + rates);
+
 
                 JSONObject jsonObject1 = new JSONObject(rates);
                 String turkishlira = jsonObject1.getString("TRY");
-                System.out.println("try: " + turkishlira);
+                tryText.setText("TRY: " + turkishlira);
+
+                String usd = jsonObject1.getString("USD");
+                usdText.setText("USD: " + usd);
+
+                String cad = jsonObject1.getString("CAD");
+                cadText.setText("CAD: " + cad);
+
+                String chf = jsonObject1.getString("CHF");
+                chfText.setText("CHF: " + chf);
+
+                String jpy = jsonObject1.getString("JPY");
+                jpyText.setText("JPY: " + jpy);
 
             } catch (Exception e) {
 
