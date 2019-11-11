@@ -11,14 +11,21 @@ class MainActivity : AppCompatActivity() {
 
         //Variables
 
-        val x = 7
+        var x = 7
         val y = 4
+
+        x = 6
 
         println(x*y)
 
-        val age = 20
-        var result = age * 5 / 4
+        var age = 20
+
+        age = 25
+
+        val result = age * 5 / 4
 
         println(result)
+
+        val pi = 3.14
     }
 }
