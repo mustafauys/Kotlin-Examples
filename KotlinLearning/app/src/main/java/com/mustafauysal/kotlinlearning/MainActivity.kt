@@ -17,13 +17,13 @@ class MainActivity : AppCompatActivity() {
         var x = 7
         val y = 4
 
-        x = 6
+
 
         println(x*y)
 
         var age = 20
 
-        age = 24
+
 
         val result = age * 5 / 4
 
@@ -31,12 +31,26 @@ class MainActivity : AppCompatActivity() {
 
         //Double & Float
 
-        val pi = 3.14
-
         val myAge = 23.0
 
         val myResult = myAge * 5 / 4
 
         println(myResult)
+
+        //String
+
+        val name = "James"
+        val surname = "Hetfield"
+
+        val fullname = name + " " + surname
+
+        println(fullname)
+
+        //Boolean
+
+        var isAlive = true
+        isAlive = false
+
+
     }
 }
