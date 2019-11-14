@@ -29,7 +29,11 @@ class MainActivity : AppCompatActivity() {
 
         println(result)
 
+        val myInteger = Int  = 5
+
         //Double & Float
+
+        val r =  Double = 5.0
 
         val myAge = 23.0
 
@@ -46,9 +50,11 @@ class MainActivity : AppCompatActivity() {
 
         println(fullname)
 
+        val myName = String = "Lars"
+
         //Boolean
 
-        var isAlive = true
+        var isAlive : Boolean = true
         isAlive = false
 
 
