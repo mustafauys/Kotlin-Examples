@@ -58,5 +58,16 @@ class MainActivity : AppCompatActivity() {
         isAlive = false
 
 
+        //Arrays
+
+        val myArray = arrayOfNulls<String>(4)
+
+        myArray[0] = "James"
+        myArray[1] = "Lars"
+        myArray[2] = "Kirk"
+        myArray[3] = "Rob"
+
+        println(myArray[2])
+
     }
 }
