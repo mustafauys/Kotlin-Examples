@@ -69,5 +69,10 @@ class MainActivity : AppCompatActivity() {
 
         println(myArray[2])
 
+        val myNumberArray = intArrayOf(10,20,30,40,50)
+        println(myNumberArray.size)
+        myNumberArray.set(2,35)
+        println(myNumberArray[2])
+
     }
 }
