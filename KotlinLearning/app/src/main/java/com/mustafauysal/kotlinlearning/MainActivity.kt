@@ -74,5 +74,18 @@ class MainActivity : AppCompatActivity() {
         myNumberArray.set(2,35)
         println(myNumberArray[2])
 
+        //List
+
+        val myMusician = ArrayList<String>()
+
+        myMusician.add("James")
+        myMusician.add("Lars")
+
+        println(myMusician)
+
+        myMusician.add(1,"Kirk")
+
+        println(myMusician)
+
     }
 }
