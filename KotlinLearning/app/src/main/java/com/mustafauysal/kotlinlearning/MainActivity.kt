@@ -11,29 +11,32 @@ class MainActivity : AppCompatActivity() {
 
         //Variables
 
-
         //Integer
 
-        var x = 7
+        var x = 5
         val y = 4
 
-
+        x = 6
 
         println(x*y)
 
         var age = 20
 
-
+        age = 23
 
         val result = age * 5 / 4
 
         println(result)
 
-        val myInteger = Int  = 5
+        val myInteger : Int = 5
+
+
 
         //Double & Float
 
-        val r =  Double = 5.0
+        val pi = 3.14
+
+        val r : Double = 5.0
 
         val myAge = 23.0
 
@@ -50,13 +53,12 @@ class MainActivity : AppCompatActivity() {
 
         println(fullname)
 
-        val myName = String = "Lars"
+        val myName : String = "Lars"
 
         //Boolean
 
         var isAlive : Boolean = true
         isAlive = false
-
 
         //Arrays
 
@@ -70,6 +72,7 @@ class MainActivity : AppCompatActivity() {
         println(myArray[2])
 
         val myNumberArray = intArrayOf(10,20,30,40,50)
+
         println(myNumberArray.size)
         myNumberArray.set(2,35)
         println(myNumberArray[2])
@@ -85,7 +88,23 @@ class MainActivity : AppCompatActivity() {
 
         myMusician.add(1,"Kirk")
 
+        myMusician.add("Kirk")
+
         println(myMusician)
+
+        //Set
+
+        val mySet = HashSet<String>()
+
+        mySet.add("Kirk")
+        mySet.add("Kirk")
+
+        println(mySet.size)
+
+
+
+
+
 
     }
 }
