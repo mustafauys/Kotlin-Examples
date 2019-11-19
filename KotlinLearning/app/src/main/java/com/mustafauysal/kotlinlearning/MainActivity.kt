@@ -101,7 +101,14 @@ class MainActivity : AppCompatActivity() {
 
         println(mySet.size)
 
+        //Map
 
+        val myHashMap = HashMap<String, String>()
+
+        myHashMap.put("name", "James")
+        myHashMap.put("instrument", "Guitar")
+
+        println(myHashMap["instrument"])
 
 
 
