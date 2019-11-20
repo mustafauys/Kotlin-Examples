@@ -111,6 +111,23 @@ class MainActivity : AppCompatActivity() {
         println(myHashMap["instrument"])
 
 
+        //Operators
+
+        var m = 5
+        println(m)
+        m = m + 1
+        println(m)
+        m++
+        println(m)
+        m--
+        println(m)
+
+        var n = 4
+
+        println(m>n)
+        println(n>m)
+
+
 
 
     }
