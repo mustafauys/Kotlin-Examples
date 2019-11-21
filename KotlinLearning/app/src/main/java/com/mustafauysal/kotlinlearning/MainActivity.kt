@@ -122,13 +122,22 @@ class MainActivity : AppCompatActivity() {
         m--
         println(m)
 
-        var n = 4
+        var n = 6
 
         println(m>n)
         println(n>m)
 
+        //if
 
+        if (m > n) {
 
+            println("m is greater than n")
+
+        } else if (n > m) {
+            println("n is greater than m")
+        } else {
+            println("m = n")
+        }
 
     }
 }
