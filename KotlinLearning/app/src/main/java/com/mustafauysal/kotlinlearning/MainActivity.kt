@@ -139,5 +139,26 @@ class MainActivity : AppCompatActivity() {
             println("m = n")
         }
 
+        //Switch
+
+        val day = 3
+        var dayString = ""
+
+        if (day == 1) {
+            dayString = "Monday"
+        } else if (day == 2) {
+            dayString = "Tuesday"
+        } else if (day == 3) {
+            dayString = "Wednesday"
+        }
+        when (day) {
+            1 -> dayString = "Monday"
+            2 -> dayString = "Tuesday"
+            3 -> dayString = "Wednesday"
+            else -> dayString = "Sunday"
+        }
+
+        println(dayString)
+
     }
 }
