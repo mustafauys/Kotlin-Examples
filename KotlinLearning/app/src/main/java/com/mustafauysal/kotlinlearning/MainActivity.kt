@@ -160,5 +160,27 @@ class MainActivity : AppCompatActivity() {
 
         println(dayString)
 
+        //For Loops
+
+        val myNumbers = intArrayOf(12,15,18,21,24)
+
+        val q = myNumbers[0] / 3 * 5
+        println(q)
+
+        for (number in myNumbers) {
+            val z = number / 3 * 5
+            println(z)
+        }
+
+        for (i in myNumbers.indices) {
+            val y = myNumbers[i] / 3 * 5
+            println(y)
+        }
+
+        for (a in 0..9) {
+            val b = a * 10
+            println(b)
+        }
+
     }
 }
