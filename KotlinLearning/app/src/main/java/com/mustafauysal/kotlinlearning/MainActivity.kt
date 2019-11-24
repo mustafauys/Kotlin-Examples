@@ -182,5 +182,15 @@ class MainActivity : AppCompatActivity() {
             println(b)
         }
 
+        //While Loops
+
+        var j = 0
+
+        while (j < 10) {
+            val x = j * 10
+            println(x)
+            j++
+        }
+
     }
 }
