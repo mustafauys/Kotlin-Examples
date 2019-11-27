@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import kotlinx.android.synthetic.main.activity_main.*
 
+@Suppress("UNUSED_PARAMETER")
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -15,7 +16,7 @@ class MainActivity : AppCompatActivity() {
 
         println(sum(5,10))
 
-        makeSimpson()
+
     }
 
     fun test() {
@@ -31,13 +32,12 @@ class MainActivity : AppCompatActivity() {
         textView.text = "Hello World"
     }
 
-    fun makeSimpson() {
+    fun makeSimpson(view: View) {
 
-        val homer = Simpson("Homer", 50, "Nuclear Safety")
+       val simpson = Simpson(nameText.text.toString(), Integer.parseInt(ageText.text.toString()), jobText.text.toString())
 
-        homer.age = 51
+        textView.text = " Name: " + simpson.name + " Age:" + simpson.age + " Job:" + simpson.job
 
-        println(homer.age)
 
     }
 }
