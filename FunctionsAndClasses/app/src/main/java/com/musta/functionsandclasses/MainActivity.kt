@@ -8,6 +8,8 @@ import kotlinx.android.synthetic.main.activity_main.*
 @Suppress("UNUSED_PARAMETER")
 class MainActivity : AppCompatActivity() {
 
+    var age : Int? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -34,7 +36,15 @@ class MainActivity : AppCompatActivity() {
 
     fun makeSimpson(view: View) {
 
-       val simpson = Simpson(nameText.text.toString(), Integer.parseInt(ageText.text.toString()), jobText.text.toString())
+        val name = nameText.text.toString()
+
+        if(!ageText.text.toString().equals("")) {
+            age = ageText.text.toString().toInt()
+        }
+
+        val job = jobText.text.toString()
+
+        val simpson = Simpson(name, age, job)
 
         textView.text = " Name: " + simpson.name + " Age:" + simpson.age + " Job:" + simpson.job
 
