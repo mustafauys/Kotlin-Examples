@@ -46,12 +46,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         locationListener = new LocationListener() {
             @Override
             public void onLocationChanged(Location location) {
-
+                /*
                 mMap.clear();
-
                 LatLng userLocation = new LatLng(location.getLatitude(), location.getLongitude());
                 mMap.addMarker(new MarkerOptions().position(userLocation).title("Your Location"));
-                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(userLocation, 15));
+                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(userLocation, 15)); */
             }
 
             @Override
@@ -84,9 +83,21 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 requestPermissions(new String[] {Manifest.permission.ACCESS_FINE_LOCATION}, 1);
             } else {
                 locationManager.requestLocationUpdates(locationManager.GPS_PROVIDER, 0, 0, locationListener);
+
+                Location lastLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+                System.out.println("lastLocation : " + lastLocation);
+                LatLng userLastLocation = new LatLng(lastLocation.getLatitude(), lastLocation.getLongitude());;
+                mMap.addMarker(new MarkerOptions().title("Your Location").position(userLastLocation));
+                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(userLastLocation, 15));
             }
         } else {
             locationManager.requestLocationUpdates(locationManager.GPS_PROVIDER, 0, 0, locationListener);
+
+            Location lastLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+            System.out.println("lastLocation : " + lastLocation);
+            LatLng userLastLocation = new LatLng(lastLocation.getLatitude(), lastLocation.getLongitude());;
+            mMap.addMarker(new MarkerOptions().title("Your Location").position(userLastLocation));
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(userLastLocation, 15));
         }
 
 
