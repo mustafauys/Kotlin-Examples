@@ -21,25 +21,25 @@
 17
 18    <!-- Include required permissions for Google Maps API to run. -->
 19    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-19-->[com.google.android.gms:play-services-maps:16.1.0] C:\Users\musta\.gradle\caches\transforms-2\files-2.1\084200e1bd9940b621ca235cdc5ce78f\jetified-play-services-maps-16.1.0\AndroidManifest.xml:23:5-79
-19-->[com.google.android.gms:play-services-maps:16.1.0] C:\Users\musta\.gradle\caches\transforms-2\files-2.1\084200e1bd9940b621ca235cdc5ce78f\jetified-play-services-maps-16.1.0\AndroidManifest.xml:23:22-76
+19-->[com.google.android.gms:play-services-maps:16.1.0] C:\Users\musta\.gradle\caches\transforms-2\files-2.1\8ff6535c1d87223d13d17a68eef5e6f5\jetified-play-services-maps-16.1.0\AndroidManifest.xml:23:5-79
+19-->[com.google.android.gms:play-services-maps:16.1.0] C:\Users\musta\.gradle\caches\transforms-2\files-2.1\8ff6535c1d87223d13d17a68eef5e6f5\jetified-play-services-maps-16.1.0\AndroidManifest.xml:23:22-76
 20    <uses-permission android:name="android.permission.INTERNET" />
-20-->[com.google.android.gms:play-services-maps:16.1.0] C:\Users\musta\.gradle\caches\transforms-2\files-2.1\084200e1bd9940b621ca235cdc5ce78f\jetified-play-services-maps-16.1.0\AndroidManifest.xml:24:5-67
-20-->[com.google.android.gms:play-services-maps:16.1.0] C:\Users\musta\.gradle\caches\transforms-2\files-2.1\084200e1bd9940b621ca235cdc5ce78f\jetified-play-services-maps-16.1.0\AndroidManifest.xml:24:22-64
+20-->[com.google.android.gms:play-services-maps:16.1.0] C:\Users\musta\.gradle\caches\transforms-2\files-2.1\8ff6535c1d87223d13d17a68eef5e6f5\jetified-play-services-maps-16.1.0\AndroidManifest.xml:24:5-67
+20-->[com.google.android.gms:play-services-maps:16.1.0] C:\Users\musta\.gradle\caches\transforms-2\files-2.1\8ff6535c1d87223d13d17a68eef5e6f5\jetified-play-services-maps-16.1.0\AndroidManifest.xml:24:22-64
 21
 22    <uses-feature
-22-->[com.google.android.gms:play-services-maps:16.1.0] C:\Users\musta\.gradle\caches\transforms-2\files-2.1\084200e1bd9940b621ca235cdc5ce78f\jetified-play-services-maps-16.1.0\AndroidManifest.xml:26:5-28:35
+22-->[com.google.android.gms:play-services-maps:16.1.0] C:\Users\musta\.gradle\caches\transforms-2\files-2.1\8ff6535c1d87223d13d17a68eef5e6f5\jetified-play-services-maps-16.1.0\AndroidManifest.xml:26:5-28:35
 23        android:glEsVersion="0x00020000"
-23-->[com.google.android.gms:play-services-maps:16.1.0] C:\Users\musta\.gradle\caches\transforms-2\files-2.1\084200e1bd9940b621ca235cdc5ce78f\jetified-play-services-maps-16.1.0\AndroidManifest.xml:27:9-41
+23-->[com.google.android.gms:play-services-maps:16.1.0] C:\Users\musta\.gradle\caches\transforms-2\files-2.1\8ff6535c1d87223d13d17a68eef5e6f5\jetified-play-services-maps-16.1.0\AndroidManifest.xml:27:9-41
 24        android:required="true" />
-24-->[com.google.android.gms:play-services-maps:16.1.0] C:\Users\musta\.gradle\caches\transforms-2\files-2.1\084200e1bd9940b621ca235cdc5ce78f\jetified-play-services-maps-16.1.0\AndroidManifest.xml:28:9-32
+24-->[com.google.android.gms:play-services-maps:16.1.0] C:\Users\musta\.gradle\caches\transforms-2\files-2.1\8ff6535c1d87223d13d17a68eef5e6f5\jetified-play-services-maps-16.1.0\AndroidManifest.xml:28:9-32
 25
 26    <application
 26-->C:\Users\musta\AndroidStudioProjects\Maps\app\src\main\AndroidManifest.xml:12:5-44:19
 27        android:allowBackup="true"
 27-->C:\Users\musta\AndroidStudioProjects\Maps\app\src\main\AndroidManifest.xml:13:9-35
 28        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-28-->[androidx.core:core:1.1.0] C:\Users\musta\.gradle\caches\transforms-2\files-2.1\f01b27bb220ecb79298884ef36a7a2fb\core-1.1.0\AndroidManifest.xml:24:18-86
+28-->[androidx.core:core:1.1.0] C:\Users\musta\.gradle\caches\transforms-2\files-2.1\e9dab9c67c1ee3668e0bbf86c6d8cbd8\core-1.1.0\AndroidManifest.xml:24:18-86
 29        android:debuggable="true"
 30        android:icon="@mipmap/ic_launcher"
 30-->C:\Users\musta\AndroidStudioProjects\Maps\app\src\main\AndroidManifest.xml:14:9-43
@@ -94,20 +94,20 @@
 61-->C:\Users\musta\AndroidStudioProjects\Maps\app\src\main\AndroidManifest.xml:42:61-85
 62
 63        <activity
-63-->[com.google.android.gms:play-services-base:16.0.1] C:\Users\musta\.gradle\caches\transforms-2\files-2.1\bdc8e2b07c0964c5568c6ae15488a89a\jetified-play-services-base-16.0.1\AndroidManifest.xml:23:9-26:75
+63-->[com.google.android.gms:play-services-base:16.0.1] C:\Users\musta\.gradle\caches\transforms-2\files-2.1\006c0d892a342c4898328095b27df160\jetified-play-services-base-16.0.1\AndroidManifest.xml:23:9-26:75
 64            android:name="com.google.android.gms.common.api.GoogleApiActivity"
-64-->[com.google.android.gms:play-services-base:16.0.1] C:\Users\musta\.gradle\caches\transforms-2\files-2.1\bdc8e2b07c0964c5568c6ae15488a89a\jetified-play-services-base-16.0.1\AndroidManifest.xml:24:13-79
+64-->[com.google.android.gms:play-services-base:16.0.1] C:\Users\musta\.gradle\caches\transforms-2\files-2.1\006c0d892a342c4898328095b27df160\jetified-play-services-base-16.0.1\AndroidManifest.xml:24:13-79
 65            android:exported="false"
-65-->[com.google.android.gms:play-services-base:16.0.1] C:\Users\musta\.gradle\caches\transforms-2\files-2.1\bdc8e2b07c0964c5568c6ae15488a89a\jetified-play-services-base-16.0.1\AndroidManifest.xml:25:13-37
+65-->[com.google.android.gms:play-services-base:16.0.1] C:\Users\musta\.gradle\caches\transforms-2\files-2.1\006c0d892a342c4898328095b27df160\jetified-play-services-base-16.0.1\AndroidManifest.xml:25:13-37
 66            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-66-->[com.google.android.gms:play-services-base:16.0.1] C:\Users\musta\.gradle\caches\transforms-2\files-2.1\bdc8e2b07c0964c5568c6ae15488a89a\jetified-play-services-base-16.0.1\AndroidManifest.xml:26:13-72
+66-->[com.google.android.gms:play-services-base:16.0.1] C:\Users\musta\.gradle\caches\transforms-2\files-2.1\006c0d892a342c4898328095b27df160\jetified-play-services-base-16.0.1\AndroidManifest.xml:26:13-72
 67
 68        <meta-data
-68-->[com.google.android.gms:play-services-basement:16.0.1] C:\Users\musta\.gradle\caches\transforms-2\files-2.1\fe2828cdb30a6d94eba61ade9aa7f469\jetified-play-services-basement-16.0.1\AndroidManifest.xml:23:9-25:69
+68-->[com.google.android.gms:play-services-basement:16.0.1] C:\Users\musta\.gradle\caches\transforms-2\files-2.1\2c974fdf8a0f5d0d18d4be8381cc82ba\jetified-play-services-basement-16.0.1\AndroidManifest.xml:23:9-25:69
 69            android:name="com.google.android.gms.version"
-69-->[com.google.android.gms:play-services-basement:16.0.1] C:\Users\musta\.gradle\caches\transforms-2\files-2.1\fe2828cdb30a6d94eba61ade9aa7f469\jetified-play-services-basement-16.0.1\AndroidManifest.xml:24:13-58
+69-->[com.google.android.gms:play-services-basement:16.0.1] C:\Users\musta\.gradle\caches\transforms-2\files-2.1\2c974fdf8a0f5d0d18d4be8381cc82ba\jetified-play-services-basement-16.0.1\AndroidManifest.xml:24:13-58
 70            android:value="@integer/google_play_services_version" />
-70-->[com.google.android.gms:play-services-basement:16.0.1] C:\Users\musta\.gradle\caches\transforms-2\files-2.1\fe2828cdb30a6d94eba61ade9aa7f469\jetified-play-services-basement-16.0.1\AndroidManifest.xml:25:13-66
+70-->[com.google.android.gms:play-services-basement:16.0.1] C:\Users\musta\.gradle\caches\transforms-2\files-2.1\2c974fdf8a0f5d0d18d4be8381cc82ba\jetified-play-services-basement-16.0.1\AndroidManifest.xml:25:13-66
 71    </application>
 72
 73</manifest>

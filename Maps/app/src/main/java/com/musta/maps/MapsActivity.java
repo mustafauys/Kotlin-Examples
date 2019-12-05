@@ -46,7 +46,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         locationListener = new LocationListener() {
             @Override
             public void onLocationChanged(Location location) {
-                System.out.println("Location: " + location.toString());
+
+                mMap.clear();
+
+                LatLng userLocation = new LatLng(location.getLatitude(), location.getLongitude());
+                mMap.addMarker(new MarkerOptions().position(userLocation).title("Your Location"));
+                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(userLocation, 15));
             }
 
             @Override
@@ -70,7 +75,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         } else {
             locationManager.requestLocationUpdates(locationManager.GPS_PROVIDER, 0, 0, locationListener);
         }
+
          */
+
 
         if (Build.VERSION.SDK_INT >= 23) {
             if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -82,10 +89,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             locationManager.requestLocationUpdates(locationManager.GPS_PROVIDER, 0, 0, locationListener);
         }
 
-        // Add a marker in Sydney and move the camera
-        LatLng eiffel = new LatLng(48.8539373, 2.2825966);
-        mMap.addMarker(new MarkerOptions().position(eiffel).title("Marker in Eiffel"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(eiffel, 10));
+
+
+
     }
 
     @Override
