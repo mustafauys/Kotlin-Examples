@@ -6,6 +6,7 @@ import androidx.fragment.app.FragmentActivity;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
@@ -45,9 +46,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         locationListener = new LocationListener() {
             @Override
             public void onLocationChanged(Location location) {
-                LatLng userLocation = new LatLng(location.getLatitude(), location.getLongitude());
-                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(userLocation, 15));
-                System.out.println("Location : " + location);
+
+                SharedPreferences sharedPreferences = MapsActivity.this.getSharedPreferences("com.musta.newtravelbook", MODE_PRIVATE);
+                Boolean firstTimeCheck = sharedPreferences.getBoolean("notFirstTime", false);
+
+                if(!firstTimeCheck) {
+                    LatLng userLocation = new LatLng(location.getLatitude(), location.getLongitude());
+                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(userLocation, 15));
+                    sharedPreferences.edit().putBoolean("notFirstTime", true).apply();
+                }
             }
 
             @Override
@@ -72,6 +79,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             } else {
                 locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
 
+                mMap.clear();
+
+                Location lastLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+                LatLng lastUserLocation = new LatLng(lastLocation.getLatitude(), lastLocation.getLongitude());
+                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(lastUserLocation, 15));
             }
         } else {
             locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
