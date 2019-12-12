@@ -8,6 +8,8 @@ import android.Manifest;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteStatement;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -32,6 +34,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private GoogleMap mMap;
     LocationManager locationManager;
     LocationListener locationListener;
+    static SQLiteDatabase database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -152,6 +155,32 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         mMap.addMarker(new MarkerOptions().title(address).position(latLng));
         Toast.makeText(getApplicationContext(), "New Place OK!", Toast.LENGTH_SHORT).show();
+
+        try {
+
+            Double l1 = latLng.latitude;
+            Double l2 = latLng.longitude;
+
+            String coord1 = l1.toString();
+            String coord2 = l2.toString();
+
+            database = this.openOrCreateDatabase("Places", MODE_PRIVATE, null);
+
+            database.execSQL("CREATE TABLE IF NOT EXISTS places (name VARCHAR, latitude VARCHAR, longitude VARCHAR)");
+
+            String toCompile = "INSERT INTO places (name, latitude, longitude) VALUES (?, ?, ?)";
+
+            SQLiteStatement sqLiteStatement = database.compileStatement(toCompile);
+
+            sqLiteStatement.bindString(1, address);
+            sqLiteStatement.bindString(2, coord1);
+            sqLiteStatement.bindString(3, coord2);
+
+            sqLiteStatement.execute();
+
+        } catch (Exception e) {
+
+        }
 
     }
 }
