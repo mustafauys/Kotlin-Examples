@@ -6,6 +6,7 @@ import androidx.fragment.app.FragmentActivity;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.sqlite.SQLiteDatabase;
@@ -53,61 +54,77 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap = googleMap;
 
         mMap.setOnMapLongClickListener(this);
-        locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
-        locationListener = new LocationListener() {
-            @Override
-            public void onLocationChanged(Location location) {
 
-                SharedPreferences sharedPreferences = MapsActivity.this.getSharedPreferences("com.musta.newtravelbook", MODE_PRIVATE);
-                Boolean firstTimeCheck = sharedPreferences.getBoolean("notFirstTime", false);
+        Intent intent = getIntent();
+        String info = intent.getStringExtra("info");
 
-                if(!firstTimeCheck) {
-                    LatLng userLocation = new LatLng(location.getLatitude(), location.getLongitude());
-                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(userLocation, 15));
-                    sharedPreferences.edit().putBoolean("notFirstTime", true).apply();
+        if (info.matches("new")) {
+
+            locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+            locationListener = new LocationListener() {
+                @Override
+                public void onLocationChanged(Location location) {
+
+                    SharedPreferences sharedPreferences = MapsActivity.this.getSharedPreferences("com.musta.newtravelbook", MODE_PRIVATE);
+                    Boolean firstTimeCheck = sharedPreferences.getBoolean("notFirstTime", false);
+
+                    if (!firstTimeCheck) {
+                        LatLng userLocation = new LatLng(location.getLatitude(), location.getLongitude());
+                        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(userLocation, 15));
+                        sharedPreferences.edit().putBoolean("notFirstTime", true).apply();
+                    }
                 }
-            }
 
-            @Override
-            public void onStatusChanged(String provider, int status, Bundle extras) {
+                @Override
+                public void onStatusChanged(String provider, int status, Bundle extras) {
 
-            }
+                }
 
-            @Override
-            public void onProviderEnabled(String provider) {
+                @Override
+                public void onProviderEnabled(String provider) {
 
-            }
+                }
 
-            @Override
-            public void onProviderDisabled(String provider) {
+                @Override
+                public void onProviderDisabled(String provider) {
 
-            }
-        };
+                }
+            };
 
-        if (Build.VERSION.SDK_INT >= 23) {
-            if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                requestPermissions(new String[] {Manifest.permission.ACCESS_FINE_LOCATION}, 1);
+            if (Build.VERSION.SDK_INT >= 23) {
+                if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                    requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
+                } else {
+                    locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
+
+                    mMap.clear();
+
+                    Location lastLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+                    if (lastLocation != null) {
+                        LatLng lastUserLocation = new LatLng(lastLocation.getLatitude(), lastLocation.getLongitude());
+                        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(lastUserLocation, 15));
+                    }
+                }
             } else {
                 locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
-
-                mMap.clear();
-
                 Location lastLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-                if(lastLocation != null) {
+                if (lastLocation != null) {
                     LatLng lastUserLocation = new LatLng(lastLocation.getLatitude(), lastLocation.getLongitude());
                     mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(lastUserLocation, 15));
                 }
-            }
-        } else {
-            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
-            Location lastLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-            if(lastLocation != null) {
-                LatLng lastUserLocation = new LatLng(lastLocation.getLatitude(), lastLocation.getLongitude());
-                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(lastUserLocation, 15));
+
             }
 
+        } else  {
+            mMap.clear();
+
+            int position = intent.getIntExtra("position", 0);
+            LatLng location = new LatLng(MainActivity.locations.get(position).latitude, MainActivity.locations.get(position).longitude);
+            String placeName = MainActivity.names.get(position);
+
+            mMap.addMarker(new MarkerOptions().title(placeName).position(location));
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location, 15));
         }
-
     }
 
     @Override
@@ -118,10 +135,27 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             if (requestCode == 1) {
                 if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)  {
                     locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
-                    Location lastLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-                    if(lastLocation != null) {
-                        LatLng lastUserLocation = new LatLng(lastLocation.getLatitude(), lastLocation.getLongitude());
-                        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(lastUserLocation, 15));
+
+                    Intent intent = getIntent();
+                    String info = intent.getStringExtra("info");
+
+                    if (info.matches("new")) {
+
+                        Location lastLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+                        if(lastLocation != null) {
+                            LatLng lastUserLocation = new LatLng(lastLocation.getLatitude(), lastLocation.getLongitude());
+                            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(lastUserLocation, 15));
+                        }
+
+                    } else {
+                        mMap.clear();
+
+                        int position = intent.getIntExtra("position", 0);
+                        LatLng location = new LatLng(MainActivity.locations.get(position).latitude, MainActivity.locations.get(position).longitude);
+                        String placeName = MainActivity.names.get(position);
+
+                        mMap.addMarker(new MarkerOptions().title(placeName).position(location));
+                        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location, 15));
                     }
 
                 }
@@ -155,6 +189,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         mMap.addMarker(new MarkerOptions().title(address).position(latLng));
         Toast.makeText(getApplicationContext(), "New Place OK!", Toast.LENGTH_SHORT).show();
+
+        MainActivity.names.add(address);
+        MainActivity.locations.add(latLng);
+        MainActivity.arrayAdapter.notifyDataSetChanged();
 
         try {
 

@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -38,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
 
         if (item.getItemId() == R.id.add_place) {
             Intent intent = new Intent(getApplicationContext(), MapsActivity.class);
+            intent.putExtra("info", "new");
             startActivity(intent);
 
         }
@@ -75,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
                 LatLng locationFromDatabase = new LatLng(l1, l2);
 
                 locations.add(locationFromDatabase);
-                
+
             }
 
             cursor.close();
@@ -87,6 +90,17 @@ public class MainActivity extends AppCompatActivity {
         arrayAdapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1,names);
 
         listView.setAdapter(arrayAdapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                Intent intent = new Intent(getApplicationContext(), MapsActivity.class);
+                intent.putExtra("info", "old");
+                intent.putExtra("position", position);
+                startActivity(intent);
+            }
+        });
     }
 
 
