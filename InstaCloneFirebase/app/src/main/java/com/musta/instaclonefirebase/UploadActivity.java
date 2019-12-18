@@ -28,6 +28,8 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.io.IOException;
+import java.lang.ref.Reference;
+import java.util.UUID;
 
 public class UploadActivity extends AppCompatActivity {
 
@@ -51,10 +53,25 @@ public class UploadActivity extends AppCompatActivity {
 
     public void upload (View view) {
 
+
         if (imageData != null) {
-            storageReference.child("images").child("images2").child("images2.png").putFile(imageData).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+
+            UUID uuid = UUID.randomUUID();
+            final String imageName = "images/" + uuid + ".jpg";
+
+            storageReference.child(imageName).putFile(imageData).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+
+                    StorageReference newReference = FirebaseStorage.getInstance().getReference(imageName);
+                    newReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                        @Override
+                        public void onSuccess(Uri uri) {
+
+                            String downloadUrl = uri.toString();
+                            
+                        }
+                    });
 
                 }
             }).addOnFailureListener(new OnFailureListener() {
