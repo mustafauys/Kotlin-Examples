@@ -19,6 +19,13 @@ import android.provider.MediaStore;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import java.io.IOException;
 
@@ -27,6 +34,9 @@ public class UploadActivity extends AppCompatActivity {
     Bitmap selectedImage;
     ImageView imageView;
     EditText commentText;
+    private FirebaseStorage firebaseStorage;
+    private StorageReference storageReference;
+    Uri imageData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,9 +45,27 @@ public class UploadActivity extends AppCompatActivity {
 
         imageView = findViewById(R.id.imageView);
         commentText = findViewById(R.id.commentText);
+        firebaseStorage = FirebaseStorage.getInstance();
+        storageReference = firebaseStorage.getReference();
     }
 
     public void upload (View view) {
+
+        if (imageData != null) {
+            storageReference.child("images").child("images2").child("images2.png").putFile(imageData).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Toast.makeText(UploadActivity.this,e.getLocalizedMessage().toString(), Toast.LENGTH_LONG).show();
+                }
+            });
+        }
+
+
 
     }
 
@@ -69,7 +97,7 @@ public class UploadActivity extends AppCompatActivity {
 
         if (requestCode == 2 && resultCode == RESULT_OK && data != null) {
 
-            Uri imageData = data.getData();
+            imageData = data.getData();
 
             try {
                 if (Build.VERSION.SDK_INT >= 28) {
