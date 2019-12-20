@@ -22,12 +22,16 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.util.ArrayList;
 import java.util.Map;
 
 public class FeedActivity extends AppCompatActivity {
 
     private FirebaseAuth firebaseAuth;
     private FirebaseFirestore firebaseFirestore;
+    ArrayList<String> userEmailFromFB;
+    ArrayList<String> userCommentFromFB;
+    ArrayList<String> userImageFromFB;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -64,6 +68,10 @@ public class FeedActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_feed);
 
+        userCommentFromFB = new ArrayList<>();
+        userEmailFromFB = new ArrayList<>();
+        userImageFromFB = new ArrayList<>();
+
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseFirestore = FirebaseFirestore.getInstance();
 
@@ -92,7 +100,9 @@ public class FeedActivity extends AppCompatActivity {
                         String userEmail = (String) data.get("userEmail");
                         String downloadUrl = (String) data.get("downloadurl");
 
-                        System.out.println(comment);
+                        userCommentFromFB.add(comment);
+                        userEmailFromFB.add(userEmail);
+                        userImageFromFB.add(downloadUrl);
 
                     }
 
