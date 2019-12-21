@@ -3,6 +3,8 @@ package com.musta.instaclonefirebase;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.icu.text.UnicodeSetSpanner;
@@ -10,6 +12,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -32,6 +35,7 @@ public class FeedActivity extends AppCompatActivity {
     ArrayList<String> userEmailFromFB;
     ArrayList<String> userCommentFromFB;
     ArrayList<String> userImageFromFB;
+    FeedRecyclerAdapter feedRecyclerAdapter;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -76,6 +80,11 @@ public class FeedActivity extends AppCompatActivity {
         firebaseFirestore = FirebaseFirestore.getInstance();
 
         getDataFromFirestore();
+
+        RecyclerView recyclerView = findViewById(R.id.recyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        feedRecyclerAdapter = new FeedRecyclerAdapter(userEmailFromFB, userCommentFromFB, userImageFromFB);
+        recyclerView.setAdapter(feedRecyclerAdapter);
     }
 
     public void getDataFromFirestore() {
@@ -103,6 +112,8 @@ public class FeedActivity extends AppCompatActivity {
                         userCommentFromFB.add(comment);
                         userEmailFromFB.add(userEmail);
                         userImageFromFB.add(downloadUrl);
+
+                        feedRecyclerAdapter.notifyDataSetChanged();
 
                     }
 

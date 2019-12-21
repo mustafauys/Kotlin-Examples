@@ -9,8 +9,20 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
+
 public class FeedRecyclerAdapter extends RecyclerView.Adapter<FeedRecyclerAdapter.PostHolder> {
 
+
+    private ArrayList<String> userEmailList;
+    private ArrayList<String> userCommentList;
+    private ArrayList<String> userImageList;
+
+    public FeedRecyclerAdapter(ArrayList<String> userEmailList, ArrayList<String> userCommentList, ArrayList<String> userImageList) {
+        this.userEmailList = userEmailList;
+        this.userCommentList = userCommentList;
+        this.userImageList = userImageList;
+    }
 
     @NonNull
     @Override
@@ -24,14 +36,14 @@ public class FeedRecyclerAdapter extends RecyclerView.Adapter<FeedRecyclerAdapte
     @Override
     public void onBindViewHolder(@NonNull PostHolder holder, int position) {
 
-        holder.userEmailText.setText("");
-        holder.commentText.setText("");
+        holder.userEmailText.setText(userEmailList.get(position));
+        holder.commentText.setText(userCommentList.get(position));
 
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return userEmailList.size();
     }
 
     class PostHolder extends RecyclerView.ViewHolder {
