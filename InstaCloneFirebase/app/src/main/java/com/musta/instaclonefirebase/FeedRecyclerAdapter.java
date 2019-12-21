@@ -9,6 +9,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 
 public class FeedRecyclerAdapter extends RecyclerView.Adapter<FeedRecyclerAdapter.PostHolder> {
@@ -38,6 +40,7 @@ public class FeedRecyclerAdapter extends RecyclerView.Adapter<FeedRecyclerAdapte
 
         holder.userEmailText.setText(userEmailList.get(position));
         holder.commentText.setText(userCommentList.get(position));
+        Picasso.get().load(userImageList.get(position)).into(holder.imageView);
 
     }
 
