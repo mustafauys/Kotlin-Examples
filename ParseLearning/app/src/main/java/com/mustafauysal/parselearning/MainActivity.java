@@ -5,12 +5,15 @@ import android.os.Bundle;
 import android.view.Window;
 import android.widget.Toast;
 
+import com.parse.FindCallback;
 import com.parse.GetCallback;
 import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.SaveCallback;
+
+import java.util.List;
 
     public class MainActivity extends AppCompatActivity {
 
@@ -22,8 +25,8 @@ import com.parse.SaveCallback;
         /*
         ParseObject object = new ParseObject("Fruits");
 
-        object.put("name", "banana");
-        object.put("calories", 250);
+        object.put("name", "lemon");
+        object.put("calories", 50);
         object.saveInBackground(new SaveCallback() {
             @Override
             public void done(ParseException e) {
@@ -35,12 +38,8 @@ import com.parse.SaveCallback;
             }
         });
 
-        */
-
-
-
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Fruits");
-        query.getInBackground("CBtF2ofHjr", new GetCallback<ParseObject>() {
+        query.getInBackground("E1CVRi9EpV", new GetCallback<ParseObject>() {
             @Override
             public void done(ParseObject object, ParseException e) {
                 if (e != null) {
@@ -54,6 +53,31 @@ import com.parse.SaveCallback;
                 }
             }
         });
+
+        */
+
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("Fruits");
+        query.whereLessThan("calories", 100);
+        query.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> objects, ParseException e) {
+                if (e != null) {
+                    e.printStackTrace();
+                } else {
+                    if (objects.size() > 0) {
+                        for (ParseObject object : objects) {
+                            String objectName = object.getString("name");
+                            int objectCalories = object.getInt("calories");
+
+                            System.out.println("object name: " + objectName);
+                            System.out.println("object calories: " + objectCalories);
+                        }
+                    }
+                }
+            }
+        });
+
+
 
 
     }
