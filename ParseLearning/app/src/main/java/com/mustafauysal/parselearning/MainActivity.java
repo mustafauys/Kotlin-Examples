@@ -5,13 +5,16 @@ import android.os.Bundle;
 import android.view.Window;
 import android.widget.Toast;
 
+import com.google.android.gms.common.oob.SignUp;
 import com.parse.FindCallback;
 import com.parse.GetCallback;
 import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
+import com.parse.ParseUser;
 import com.parse.SaveCallback;
+import com.parse.SignUpCallback;
 
 import java.util.List;
 
@@ -21,6 +24,8 @@ import java.util.List;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // DATABASE DATABASE DATABASE DATABASE DATABASE DATABASE
 
         /*
         ParseObject object = new ParseObject("Fruits");
@@ -54,7 +59,7 @@ import java.util.List;
             }
         });
 
-        */
+
 
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Fruits");
         query.whereLessThan("calories", 100);
@@ -73,6 +78,25 @@ import java.util.List;
                             System.out.println("object calories: " + objectCalories);
                         }
                     }
+                }
+            }
+        });
+
+         */
+
+        // USER USER USER USER USER USER USER USER USER
+
+        ParseUser user = new ParseUser();
+        user.setUsername("Mustafa");
+        user.setPassword("123456");
+
+        user.signUpInBackground(new SignUpCallback() {
+            @Override
+            public void done(ParseException e) {
+                if (e != null) {
+                    e.printStackTrace();
+                } else {
+                    Toast.makeText(MainActivity.this, "User Signed Up!", Toast.LENGTH_LONG).show();
                 }
             }
         });
