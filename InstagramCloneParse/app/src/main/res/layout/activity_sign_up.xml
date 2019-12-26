@@ -6,13 +6,45 @@
     android:layout_height="match_parent"
     tools:context=".SignUpActivity">
 
-    <TextView
+    <EditText
+        android:id="@+id/sign_up_activity_name_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="101dp"
+        android:ems="10"
+        android:hint="Name"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <EditText
+        android:id="@+id/sign_up_activity_password_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="42dp"
+        android:ems="10"
+        android:hint="password"
+        android:inputType="textPassword"
+        app:layout_constraintStart_toStartOf="@+id/sign_up_activity_name_text"
+        app:layout_constraintTop_toBottomOf="@+id/sign_up_activity_name_text" />
+
+    <Button
+        android:id="@+id/sign_up_activity_sign_in_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="41dp"
+        android:onClick="signIn"
+        android:text="Sign In"
+        app:layout_constraintStart_toStartOf="@+id/sign_up_activity_password_text"
+        app:layout_constraintTop_toBottomOf="@+id/sign_up_activity_password_text" />
+
+    <Button
+        android:id="@+id/sign_up_activity_sign_up_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="signUp"
+        android:text="Sign Up"
+        app:layout_constraintBaseline_toBaselineOf="@+id/sign_up_activity_sign_in_button"
+        app:layout_constraintEnd_toEndOf="@+id/sign_up_activity_password_text" />
 </androidx.constraintlayout.widget.ConstraintLayout>
