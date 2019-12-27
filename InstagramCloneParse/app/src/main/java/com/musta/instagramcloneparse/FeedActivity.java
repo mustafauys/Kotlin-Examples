@@ -29,6 +29,8 @@ public class FeedActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
         if (item.getItemId() == R.id.add_post) {
+            Intent intent = new Intent(getApplicationContext(),UploadActivity.class);
+            startActivity(intent);
 
         } else if (item.getItemId() == R.id.logout){
             ParseUser.logOutInBackground(new LogOutCallback() {
