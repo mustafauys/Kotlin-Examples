@@ -25,6 +25,13 @@ public class SignUpActivity extends AppCompatActivity {
         usernameText = findViewById(R.id.sign_up_activity_name_text);
         passwordText = findViewById(R.id.sign_up_activity_password_text);
 
+        ParseUser parseUser = ParseUser.getCurrentUser();
+
+        if (parseUser != null) {
+            Intent intent = new Intent(getApplicationContext(), FeedActivity.class);
+            startActivity(intent);
+        }
+
 
     }
 
