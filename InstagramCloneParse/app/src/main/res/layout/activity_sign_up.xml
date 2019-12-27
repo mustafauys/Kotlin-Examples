@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="42dp"
         android:ems="10"
-        android:hint="password"
+        android:hint="Password"
         android:inputType="textPassword"
         app:layout_constraintStart_toStartOf="@+id/sign_up_activity_name_text"
         app:layout_constraintTop_toBottomOf="@+id/sign_up_activity_name_text" />
