@@ -6,4 +6,10 @@
     android:layout_height="match_parent"
     tools:context=".FeedActivity">
 
+    <ListView
+        android:id="@+id/listView"
+        android:layout_width="409dp"
+        android:layout_height="727dp"
+        tools:layout_editor_absoluteX="2dp"
+        tools:layout_editor_absoluteY="1dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
