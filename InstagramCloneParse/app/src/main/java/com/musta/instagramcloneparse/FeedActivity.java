@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -13,11 +14,17 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.parse.FindCallback;
+import com.parse.GetDataCallback;
 import com.parse.LogOutCallback;
 import com.parse.ParseException;
+import com.parse.ParseFile;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class FeedActivity extends AppCompatActivity {
 
@@ -80,6 +87,43 @@ public class FeedActivity extends AppCompatActivity {
     }
 
     public void download () {
+
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("Posts");
+        query.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> objects, ParseException e) {
+
+                if (e != null) {
+                    Toast.makeText(getApplicationContext(),e.getLocalizedMessage(),Toast.LENGTH_LONG).show();
+                } else {
+
+                    if (objects.size() > 0) {
+
+                        for (final ParseObject object : objects) {
+                            ParseFile parseFile = (ParseFile) object.get("image");
+
+                            parseFile.getDataInBackground(new GetDataCallback() {
+                                @Override
+                                public void done(byte[] data, ParseException e) {
+                                    if (e == null && data != null) {
+                                        Bitmap bitmap = BitmapFactory.decodeByteArray(data,0,data.length);
+
+                                        userImageFromParse.add(bitmap);
+                                        usernameFromParse.add(object.getString("username"));
+                                        userCommentsFromParse.add(object.getString("comment"));
+
+                                        postClass.notifyDataSetChanged();
+                                    }
+                                }
+                            });
+                        }
+
+                    }
+
+                }
+
+            }
+        });
 
     }
 }
