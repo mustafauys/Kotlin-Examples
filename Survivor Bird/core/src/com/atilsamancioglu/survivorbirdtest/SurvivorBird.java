@@ -15,7 +15,7 @@ public class SurvivorBird extends ApplicationAdapter {
 	float birdY = 0;
 	int gameState = 0;
 	float velocity = 0;
-	float gravity = 0.7f;
+	float gravity = 0.9f;
 
 	@Override
 	public void create () {
@@ -30,11 +30,13 @@ public class SurvivorBird extends ApplicationAdapter {
 	@Override
 	public void render () {
 
-	    if (Gdx.input.justTouched()) {
-           gameState = 1;
-        }
+
 
 	    if (gameState == 1) {
+
+	    	if (Gdx.input.justTouched()) {
+	    		velocity = -20;
+			}
 
 	    	if (birdY > 0 || velocity < 0) {
 				velocity = velocity + gravity;
