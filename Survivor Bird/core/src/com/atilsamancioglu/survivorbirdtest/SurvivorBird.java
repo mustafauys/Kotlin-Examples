@@ -13,6 +13,9 @@ public class SurvivorBird extends ApplicationAdapter {
 	Texture bird;
 	float birdX = 0;
 	float birdY = 0;
+	int gameState = 0;
+	float velocity = 0;
+	float gravity = 0.7f;
 
 	@Override
 	public void create () {
@@ -26,6 +29,25 @@ public class SurvivorBird extends ApplicationAdapter {
 
 	@Override
 	public void render () {
+
+	    if (Gdx.input.justTouched()) {
+           gameState = 1;
+        }
+
+	    if (gameState == 1) {
+
+	    	if (birdY > 0 || velocity < 0) {
+				velocity = velocity + gravity;
+				birdY = birdY - velocity;
+			}
+
+
+		} else {
+			if (Gdx.input.justTouched()) {
+				gameState = 1;
+			}
+		}
+
 		batch.begin();
 		batch.draw(background,0,0,Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
 		batch.draw(bird,birdX,birdY, Gdx.graphics.getWidth() / 15, Gdx.graphics.getHeight() / 10);
