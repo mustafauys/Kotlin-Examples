@@ -19,7 +19,13 @@ public class SurvivorBird extends ApplicationAdapter {
 	int gameState = 0;
 	float velocity = 0;
 	float gravity = 0.9f;
-	float enemyX = 0;
+	float enemyVelocity = 2;
+
+
+
+	int numberOfEnemies = 4;
+	float [] enemyX = new float[numberOfEnemies];
+	float distance = 0;
 
 	@Override
 	public void create () {
@@ -30,10 +36,16 @@ public class SurvivorBird extends ApplicationAdapter {
 		bee2 = new Texture("bee.png");
 		bee3 = new Texture("bee.png");
 
-		enemyX = 900;
+        distance = Gdx.graphics.getWidth() / 2;
 
 		birdX = Gdx.graphics.getWidth() / 2 - bird.getHeight() / 1;
 		birdY = Gdx.graphics.getHeight() / 3;
+
+		for (int i = 0; i < numberOfEnemies; i++) {
+
+		    enemyX[i] = Gdx.graphics.getWidth() - bee1.getWidth() / 2 + i * distance;
+
+        }
 	}
 
 	@Override
@@ -44,15 +56,30 @@ public class SurvivorBird extends ApplicationAdapter {
 
 	    if (gameState == 1) {
 
-	    	batch.draw(bee1, enemyX,50, Gdx.graphics.getWidth() / 15, Gdx.graphics.getHeight() / 10);
-	    	batch.draw(bee2, enemyX,150, Gdx.graphics.getWidth() / 15, Gdx.graphics.getHeight() / 10);
-	    	batch.draw(bee3, enemyX,350, Gdx.graphics.getWidth() / 15, Gdx.graphics.getHeight() / 10);
+            if (Gdx.input.justTouched()) {
+                velocity = -20;
+            }
 
-	    	enemyX -= 5;
+            for (int i = 0; i < numberOfEnemies; i++) {
 
-	    	if (Gdx.input.justTouched()) {
-	    		velocity = -20;
-			}
+            	if (enemyX[i] < Gdx.graphics.getWidth() / 15) {
+            		enemyX[i] = enemyX[i] + numberOfEnemies * distance;
+            	} else {
+					enemyX[i] = enemyX[i] - enemyVelocity;
+				}
+
+
+
+                batch.draw(bee1, enemyX[i],50, Gdx.graphics.getWidth() / 15, Gdx.graphics.getHeight() / 10);
+                batch.draw(bee2, enemyX[i],150, Gdx.graphics.getWidth() / 15, Gdx.graphics.getHeight() / 10);
+                batch.draw(bee3, enemyX[i],350, Gdx.graphics.getWidth() / 15, Gdx.graphics.getHeight() / 10);
+            }
+
+
+
+
+
+
 
 	    	if (birdY > 0 || velocity < 0) {
 				velocity = velocity + gravity;
