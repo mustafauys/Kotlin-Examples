@@ -5,6 +5,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Circle;
@@ -27,6 +28,9 @@ public class SurvivorBird extends ApplicationAdapter {
 	float gravity = 0.9f;
 	float enemyVelocity = 2;
 	Random random;
+	int score = 0;
+	int scoredEnemy = 0;
+	BitmapFont font;
 
 	Circle birdCircle;
 
@@ -67,6 +71,10 @@ public class SurvivorBird extends ApplicationAdapter {
 		enemyCircles2 = new Circle[numberOfEnemies];
 		enemyCircles3 = new Circle[numberOfEnemies];
 
+		font = new BitmapFont();
+		font.setColor(Color.WHITE);
+		font.getData().setScale(4);
+
 		for (int i = 0; i < numberOfEnemies; i++) {
 
 			enemyOffSet[i] = (random.nextFloat() - 0.5f) * (Gdx.graphics.getHeight() - 200);
@@ -89,6 +97,18 @@ public class SurvivorBird extends ApplicationAdapter {
 		batch.draw(background,0,0,Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
 
 	    if (gameState == 1) {
+
+			if (enemyX[scoredEnemy] < Gdx.graphics.getWidth() / 2 - bird.getHeight() / 1) {
+				score++;
+
+				if (scoredEnemy < numberOfEnemies - 1) {
+					scoredEnemy++;
+
+				} else {
+					scoredEnemy = 0;
+				}
+			}
+
 
             if (Gdx.input.justTouched()) {
                 velocity = -20;
@@ -118,12 +138,6 @@ public class SurvivorBird extends ApplicationAdapter {
                 enemyCircles2[i] = new Circle(enemyX[i] + Gdx.graphics.getWidth() / 30, Gdx.graphics.getHeight() / 2 + enemyOffSet2[i] + Gdx.graphics.getHeight() / 20, Gdx.graphics.getWidth() / 30);
                 enemyCircles3[i] = new Circle(enemyX[i] + Gdx.graphics.getWidth() / 30, Gdx.graphics.getHeight() / 2 + enemyOffSet3[i] + Gdx.graphics.getHeight() / 20, Gdx.graphics.getWidth() / 30);
             }
-
-
-
-
-
-
 
 	    	if (birdY > 0) {
 				velocity = velocity + gravity;
@@ -157,11 +171,15 @@ public class SurvivorBird extends ApplicationAdapter {
 				}
 
 				velocity = 0;
+				scoredEnemy = 0;
+				score = 0;
 			}
 		}
 
 
 		batch.draw(bird,birdX,birdY, Gdx.graphics.getWidth() / 15, Gdx.graphics.getHeight() / 10);
+
+	    font.draw(batch,String.valueOf(score),100,200);
 
 		batch.end();
 
