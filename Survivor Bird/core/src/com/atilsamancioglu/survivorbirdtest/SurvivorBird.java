@@ -31,6 +31,7 @@ public class SurvivorBird extends ApplicationAdapter {
 	int score = 0;
 	int scoredEnemy = 0;
 	BitmapFont font;
+	BitmapFont font2;
 
 	Circle birdCircle;
 
@@ -74,6 +75,10 @@ public class SurvivorBird extends ApplicationAdapter {
 		font = new BitmapFont();
 		font.setColor(Color.WHITE);
 		font.getData().setScale(4);
+
+		font2 = new BitmapFont();
+		font2.setColor(Color.WHITE);
+		font2.getData().setScale(6);
 
 		for (int i = 0; i < numberOfEnemies; i++) {
 
@@ -152,6 +157,9 @@ public class SurvivorBird extends ApplicationAdapter {
 				gameState = 1;
 			}
 		} else if (gameState == 2) {
+
+	        font2.draw(batch,"Game Over! Tap To Play Again!",100,Gdx.graphics.getHeight() / 2);
+
 			if (Gdx.input.justTouched()) {
 				gameState = 1;
 				birdY = Gdx.graphics.getHeight() / 3;
