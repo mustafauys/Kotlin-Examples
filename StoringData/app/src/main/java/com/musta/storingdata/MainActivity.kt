@@ -10,6 +10,8 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : AppCompatActivity() {
 
     lateinit var sharedPreferences : SharedPreferences
+    var ageFromPreferences : Int? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,7 +21,7 @@ class MainActivity : AppCompatActivity() {
         //SharedPreferences Initialize
         sharedPreferences = this.getSharedPreferences("com.musta.storingdata", Context.MODE_PRIVATE)
 
-        val ageFromPreferences = sharedPreferences.getInt("age", -1)
+        ageFromPreferences = sharedPreferences.getInt("age", -1)
 
         if (ageFromPreferences == -1) {
             textView.text = "Your Age: "
@@ -43,6 +45,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun delete (view : View) {
+
+        ageFromPreferences = sharedPreferences.getInt("age", -1)
+
+        if (ageFromPreferences != -1) {
+            sharedPreferences.edit().remove("age").apply()
+            textView.text = "Your Age: "
+        }
 
     }
 }
