@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -12,11 +13,25 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        Toast.makeText(applicationContext, "Welcome", Toast.LENGTH_LONG).show()
+        //Context
+
+        //Activity Context -> this
+        //App Context -> applicationContext
+
+        Toast.makeText(this@MainActivity, "Welcome", Toast.LENGTH_LONG).show()
+
+        /*
+        button.setOnClickListener(object:View.OnClickListener {
+            override fun onClick(v: View?) {
+                Toast.makeText(this@MainActivity,"Test", Toast.LENGTH_LONG).show()
+            }
+
+        })
+         */
     }
 
     fun save (view: View) {
-        val alert = AlertDialog.Builder(this)
+        val alert = AlertDialog.Builder(this@MainActivity)
         alert.setTitle("Save")
         alert.setMessage("Are You Sure?")
         alert.setPositiveButton("Yes") {dialog, which ->
