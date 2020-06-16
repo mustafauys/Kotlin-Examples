@@ -10,6 +10,6 @@
         android:id="@+id/listView"
         android:layout_width="409dp"
         android:layout_height="727dp"
-        tools:layout_editor_absoluteX="2dp"
-        tools:layout_editor_absoluteY="1dp" />
+        tools:layout_editor_absoluteX="2"
+        tools:layout_editor_absoluteY="1" />
 </androidx.constraintlayout.widget.ConstraintLayout>
