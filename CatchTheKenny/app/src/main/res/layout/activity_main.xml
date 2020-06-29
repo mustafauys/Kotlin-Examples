@@ -117,7 +117,7 @@
         android:id="@+id/scoreText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="36dp"
+        android:layout_marginBottom="36"
         android:text="Score: 0"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
