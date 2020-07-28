@@ -11,6 +11,6 @@
         android:layout_width="395dp"
         android:layout_height="715dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="8dp" />
+        app:layout_constraintStart_toStartOf=""
+        tools:layout_editor_absoluteY="8" />
 </android.support.constraint.ConstraintLayout>
