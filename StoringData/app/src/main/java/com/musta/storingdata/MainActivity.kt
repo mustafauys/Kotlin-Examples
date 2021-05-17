@@ -17,8 +17,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
-        //SharedPreferences Initialize
         sharedPreferences = this.getSharedPreferences("com.musta.storingdata", Context.MODE_PRIVATE)
 
         ageFromPreferences = sharedPreferences.getInt("age", -1)
@@ -31,8 +29,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun save (view : View) {
-
-        //SharedPreferences
 
 
         val myAge = editText.text.toString().toIntOrNull()
